@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\post;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource as PostResource;
 
 class PostController extends Controller
 {
@@ -14,18 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $post = Post::latest()->paginate(6);
+        return PostResource::collection($post);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +28,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create($request->all());
+        return response()->json(['200' => 'ok']);
     }
 
     /**
@@ -46,19 +40,9 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
-        //
+        return $post;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(post $post)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +53,9 @@ class PostController extends Controller
      */
     public function update(Request $request, post $post)
     {
-        //
+        $request['slug'] = str_slug($request->title);
+        $post->update($request->all());
+        return response('updated', '200');
     }
 
     /**
@@ -80,6 +66,7 @@ class PostController extends Controller
      */
     public function destroy(post $post)
     {
-        //
+        $post->delete();
+        return response('deleted', '404');
     }
 }
