@@ -14,7 +14,8 @@
         "laravel/helpers": "^1.1",
         "laravel/passport": "^8.0",
         "laravel/tinker": "^2.0",
-        "nesbot/carbon": "^2.27"
+        "nesbot/carbon": "^2.27",
+        "symfony/translation": "4.3.8"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
