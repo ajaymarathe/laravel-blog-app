@@ -102,7 +102,6 @@ class PostController extends Controller
             "user" => $user_count,
         ];
         
-        
         return response()->json($data);
     }
 }
