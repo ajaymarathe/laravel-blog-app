@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\post;
+use App\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         factory(Post::class, 100)->create();
+        factory(Category::class, 50)->create();
     }
 }
