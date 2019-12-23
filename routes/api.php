@@ -23,11 +23,8 @@ Route::apiResource('posts', 'PostController');
 Route::apiResource('category', 'CategoryController');
 
 // Get all post count
-Route::get('/post_count','PostController@count');
-// category count
-Route::get('/category_count','CategoryController@count');
-// users count
-Route::get('/user_count','API\AuthController@count');
+Route::get('/count','PostController@count');
+
 
 /* auth route */
 Route::post('login', 'API\AuthController@login');
